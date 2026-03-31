@@ -1,11 +1,759 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Meu site</title>
-</head>
-<body>
-  <h1>Meu site está no ar</h1>
-  <p>Se você está lendo isso, o GitHub Pages funciona.</p>
-</body>
-</html>
+---
+title: AbacatePay Landing Page — Design Documentation
+description: Reverse-engineered design spec for recreating the AbacatePay landing page
+---
+
+# AbacatePay Landing Page — Design Specification
+
+> Stack detectada: **Next.js** + **Tailwind CSS** com breakpoints customizados.  
+> Fonte primária: **Fustat** (usada em todo o corpo e headings principais).
+
+---
+
+## 1. Design System
+
+### Paleta de Cores
+
+#### Cores Primárias
+
+| Nome              | Hex       | RGB                    | Uso                                         |
+|-------------------|-----------|------------------------|---------------------------------------------|
+| Primary Dark      | `#204749` | `rgb(32, 71, 73)`      | Título H1, fundo da seção de preços, texto  |
+| Primary           | `#244C4E` | `rgb(36, 76, 78)`      | Texto principal, links, nav items           |
+| Accent Green      | `#9EEA6C` | `rgb(158, 234, 108)`   | Botão CTA principal, fundo CTA final        |
+| Accent Bright     | `#58C411` | `rgb(88, 196, 17)`     | Texto "rápido." no H1, links de acesso, highlight |
+| Accent Light      | `#C2FA11` | Gradiente              | Parte final do gradiente do hero            |
+
+#### Cores de Background
+
+| Nome                | Hex       | RGB                    | Uso                                    |
+|---------------------|-----------|------------------------|----------------------------------------|
+| Body Background     | `#EFF1E7` | `rgb(239, 241, 231)`   | Fundo do `<body>` (bege-esverdeado)    |
+| Page Background     | `#E2E7F1` | `rgb(226, 231, 241)`   | Fundo do `<main>` e bordas de cards    |
+| White               | `#FFFFFF` | `rgb(255, 255, 255)`   | Fundo do container central e cards     |
+| Dark Section        | `#204749` | `rgb(32, 71, 73)`      | Seção de pricing/calculadora           |
+| Hover Bg            | `#F6F8FA` | `rgb(246, 248, 250)`   | Hover de botões ghost e FAQ items      |
+
+#### Cores de Texto
+
+| Nome              | Hex       | RGB                    | Uso                                    |
+|-------------------|-----------|------------------------|----------------------------------------|
+| Text Primary      | `#244C4E` | `rgb(36, 76, 78)`      | Headings e texto principal             |
+| Text Secondary    | `#4C5267` | `rgb(76, 82, 103)`     | Parágrafos, subtítulos, footer links   |
+| Text Muted        | `#7C7C8A` | `rgb(124, 124, 138)`   | Textos de menor hierarquia             |
+| Text on Dark      | `#FFFFFF` | `rgb(255, 255, 255)`   | Textos em fundo escuro (#204749)       |
+| Text Dark Muted   | rgba(255,255,255, 0.29) | —          | Placeholder do input em fundo escuro   |
+
+#### Gradientes
+```css
+/* Hero Section - fundo radial verde no canto superior direito */
+background-image: radial-gradient(
+  200% 300% at -30% -60%,
+  rgba(255, 255, 255, 0) 56.43%,
+  rgb(194, 250, 17) 70.92%,
+  rgb(51, 189, 25) 100%
+);
+
+/* Padrão de listras decorativas (content-side / sidebar) */
+background-image: repeating-linear-gradient(
+  45deg,
+  rgba(226, 231, 241, 0.8) 0px,
+  rgba(226, 231, 241, 0.8) 1px,
+  rgba(0, 0, 0, 0) 1px,
+  rgba(0, 0, 0, 0) 14px
+);
+
+/* Card flutuante no hero (sombra/borda) */
+background: linear-gradient(84deg, #F8F8F8 8.48%, #FFF 90.82%);
+box-shadow: 0 8px 24px rgba(149, 157, 165, 0.20), 0 0 0 2px rgba(0, 0, 0, 0.06);
+```
+
+#### Opacidades e Variações
+
+- `border-white/[0.24]` → `rgba(255, 255, 255, 0.24)` — bordas em seções escuras
+- `bg-white/[0.05]` → `rgba(255, 255, 255, 0.05)` — fundos sutis em dark mode
+- `placeholder:text-white/[0.29]` → `rgba(255, 255, 255, 0.29)` — placeholder do input
+
+---
+
+## 2. Tipografia
+
+### Fontes Utilizadas
+
+| Família        | Tipo           | Uso                              |
+|----------------|----------------|----------------------------------|
+| **Fustat**     | Sans-serif     | Fonte principal — todo o site    |
+| **Inter Tight**| Sans-serif     | Fonte de fallback / complementar |
+| **Onest**      | Sans-serif     | Variante tipográfica adicional   |
+| **Inter**      | Sans-serif     | Fallback genérico                |
+
+> As fontes são carregadas via `next/font` com `font-display: swap`.  
+> Classe Tailwind: `font-fustat`
+
+### Tamanhos e Estilos de Heading
+
+| Elemento | Tamanho  | Peso | Line Height | Letter Spacing | Cor             |
+|----------|----------|------|-------------|----------------|-----------------|
+| H1       | `68px`   | 600  | `71.4px` (1.05×) | `-3.4px`  | `#204749`       |
+| H2 (grande) | `48px` | 600 | `48px` (1×)   | `-1.92px`  | `#244C4E`       |
+| H2 (depoimentos) | `48px` | 600 | — | `-2.4px`   | `#244C4E`       |
+| H3 (suporte) | `36px` | 600 | —           | `-1.28px`  | `#244C4E`       |
+| H3 (features) | `20px` | 600 | `20.4px`   | `-0.4px`   | `#244C4E`       |
+| FAQ H3   | `20px`   | 600  | —           | —              | `#244C4E`       |
+
+### Texto de Corpo / Parágrafos
+
+| Estilo     | Tamanho | Peso | Line Height | Cor        |
+|------------|---------|------|-------------|------------|
+| Parágrafo  | `18px`  | 500  | `28px`      | `#4C5267`  |
+| Body base  | `16px`  | 400  | —           | `#4C5267`  |
+| Nav links  | `16px`  | 600  | `11px`      | `#244C4E`  |
+| Badges/Labels | `14px` | 700 | `10px`     | `#244C4E`  |
+| Feature subtitle | `12px` | 500 | `8px`    | `#244C4E`  |
+
+### Destaques Tipográficos
+
+- A palavra **"rápido."** no H1 usa `color: #58C411` com `clip-text` + `bg-[#58C411]` e `border-radius: 16px` para o efeito de highlight.
+- Subtítulos de seção como **"Quanto custa?"** e **"Code, vibe-code, no-code!"** usam a mesma cor de destaque `#58C411`.
+- Letter spacing negativo é aplicado proporcionalmente: `letter-spacing = -fontSize * 0.05`.
+
+---
+
+## 3. Layout
+
+### Container Principal
+```
+Largura total da página: 100vw
+└── body: background #EFF1E7
+    └── main: background #E2E7F1, min-h-screen
+        └── [Sections com gap de 1px entre elas]
+            ├── .content-side: ~135px de largura (decorativo, listras diagonais)
+            ├── .content-center: max-width 1200px, background #FFFFFF, flex-auto
+            └── .content-side: ~135px de largura (decorativo, listras diagonais)
+```
+
+### Estrutura de Colunas
+
+Cada seção da página usa o padrão de **3 colunas**:
+```html
+<div class="flex gap-[1px]">
+  <!-- Coluna decorativa esquerda -->
+  <div class="content-side rounded-br-lg bg-stripes"></div>
+
+  <!-- Conteúdo central máximo de 1200px -->
+  <div class="content-center w-full flex-auto bg-white rounded-b-lg">
+    <!-- Conteúdo da seção -->
+  </div>
+
+  <!-- Coluna decorativa direita -->
+  <div class="content-side rounded-bl-lg bg-stripes"></div>
+</div>
+```
+
+> O `gap-[1px]` entre as colunas cria uma linha de separação visual usando a cor `#E2E7F1` do fundo.
+
+### Grid e Flexbox
+
+- **Hero Section**: `grid desktopDefault:grid-cols-2` — coluna única em mobile, 2 colunas em desktop
+- **Feature Cards**: 4 colunas separadas por `gap-[1px]` (borda visual via background)
+- **Pricing Section**: `grid desktopDefault:grid-cols-2` com `max-w-[1312px] mx-auto`
+- **Docs/Chat Split**: 2 cards lado a lado em desktop
+- **Footer**: `grid` com 5 colunas para os menus
+- **Testimonials**: Carrossel horizontal com `overflow-x: auto`
+
+### Padding e Margens Padrão
+```css
+/* Padding interno das seções (responsivo) */
+py-16 px-6             /* mobile: 64px vertical, 24px horizontal */
+tablet:px-8            /* tablet (810px+): 32px horizontal */
+desktopDefault:px-16   /* desktop (1440px+): 64px horizontal */
+desktopXL:px-[104px]   /* wide (1698px+): 104px horizontal */
+
+/* Padding da seção escura de pricing */
+py-8 desktopDefault:p-[120px] desktopXL:px-[194px] tablet:py-16
+
+/* Cards de features */
+p-6 pt-7  → padding: 28px 24px 24px (top maior)
+
+/* Testimonial cards */
+pl-6 pr-8 pt-6 pb-10 → padding: 24px 32px 40px 24px
+```
+
+### Breakpoints Responsivos
+
+| Nome              | Valor          | Prefixo Tailwind     |
+|-------------------|----------------|----------------------|
+| Mobile            | `< 810px`      | (base)               |
+| Tablet            | `≥ 810px`      | `tablet:`            |
+| Desktop LG        | `≥ 1025px`     | `lg:`                |
+| Desktop Default   | `≥ 1440px`     | `desktopDefault:`    |
+| Desktop XL        | `≥ 1698px`     | `desktopXL:`         |
+
+> Para configurar no `tailwind.config.js`:
+```js
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      screens: {
+        tablet: "810px",
+        desktopDefault: "1440px",
+        desktopXL: "1698px",
+      },
+    },
+  },
+};
+```
+
+---
+
+## 4. Componentes
+
+### Navbar
+
+**Altura:** `99px` total (incluindo as colunas laterais decorativas)
+
+**Estrutura:**
+```html
+<header class="flex gap-[1px] text-[#4C5267]">
+  <div class="content-side rounded-br-lg bg-stripes"></div>
+  <div class="content-center w-full flex-auto bg-white rounded-b-lg">
+    <div class="flex justify-between items-center p-6 tablet:p-8">
+      <!-- Logo -->
+      <a href="/"><img src="/logo.svg" /></a>
+
+      <!-- Nav links (apenas desktop) -->
+      <nav class="items-center font-semibold flex hidden lg:flex [&_a]:py-3 [&_a]:px-4 [&_a]:text-base">
+        <a href="/pricing">Preços</a>
+        <a href="/docs">Documentação</a>
+        <a href="/blog">Blog</a>
+        <!-- Divisor vertical -->
+        <span class="mx-1 w-px h-[35px] bg-[#E2E7F1]"></span>
+      </nav>
+
+      <!-- Login (ghost) -->
+      <a class="... rounded-full bg-transparent hover:bg-[#F6F8FA]">Login</a>
+      <!-- CTA Button -->
+      <a class="... rounded-full bg-[#9EEA6C] hover:bg-[#244C4E] hover:text-[#9EEA6C]">
+        Cadastre-se
+      </a>
+    </div>
+  </div>
+  <div class="content-side rounded-bl-lg bg-stripes"></div>
+</header>
+```
+
+**Comportamento no scroll:** Não há sticky/fixed — a navbar faz parte do fluxo normal da página.
+
+**Espaçamento entre links:** `py-3 px-4` (12px vertical, 16px horizontal) por link.
+
+**Divisor:** `<span class="mx-1 w-px h-[35px] bg-[#E2E7F1]">` — linha vertical de 1px.
+
+---
+
+### Hero Section
+
+**Layout:** Grid de 2 colunas em desktop (`grid desktopDefault:grid-cols-2`), coluna única em mobile.
+
+**Background:** Branco com gradiente radial no canto superior direito:
+```css
+background: radial-gradient(200% 300% at -30% -60%,
+  rgba(255,255,255,0) 56.43%,
+  rgb(194,250,17) 70.92%,
+  rgb(51,189,25) 100%
+);
+```
+
+**Estrutura do conteúdo (coluna esquerda):**
+```html
+<div class="desktopDefault:max-w-[440px] pb-10 pt-0 tablet:pt-10">
+  <!-- Badge de social proof -->
+  <div class="flex items-center gap-2 border border-[#E2E7F1] rounded-full p-2 w-fit">
+    <div class="-space-x-2 flex"> <!-- avatars sobrepostos --></div>
+    <span>Escolhido por +10.000 empresas</span>
+  </div>
+
+  <!-- Headline principal -->
+  <h1 class="text-[68px] font-semibold leading-[105%] tracking-[-0.05em] text-[#204749]">
+    Receba fácil.
+    <span class="text-[#58C411]">Cresça rápido.</span>
+  </h1>
+
+  <!-- Subtítulo -->
+  <p class="text-lg font-medium text-[#4C5267]">
+    Infraestrutura de pagamentos em poucas linhas.
+    Feito para devs, vibe-coders e AI Agents.
+  </p>
+
+  <!-- Botões CTA -->
+  <div class="flex gap-4 mt-8">
+    <a class="btn-primary">Começar agora →</a>
+    <a class="btn-secondary">Por que usar?</a>
+  </div>
+
+  <!-- Mini badges de feature -->
+  <div class="flex gap-6 mt-6">
+    <div class="flex items-center gap-2">
+      <span>⚡</span>
+      <div>
+        <p class="text-sm font-bold">Rápido</p>
+        <p class="text-xs font-medium">Integre em minutos, não dias.</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-2">
+      <span>🔒</span>
+      <div>
+        <p class="text-sm font-bold">Seguro</p>
+        <p class="text-xs font-medium">Criptografia de ponta</p>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+**Imagem do produto (coluna direita):** Screenshots do dashboard com efeito de profundidade (cards flutuantes com `shadow-[0_8px_24px_rgba(149,157,165,0.20)]`).
+
+---
+
+### Feature Cards (Seção de Pagamentos)
+
+**Grid:** 4 colunas separadas pelo `gap-[1px]` do fundo (`#E2E7F1`).
+
+**Cada card:**
+```html
+<div class="bg-white rounded-lg overflow-hidden p-6 pt-7 flex flex-col">
+  <!-- Ícone com borda esquerda verde -->
+  <div class="border-l-2 border-[#58C411] pl-3 mb-4">
+    <Icon size={20} />
+  </div>
+  <h3 class="text-xl font-semibold leading-[102%] tracking-[-0.4px] text-[#244C4E]">
+    Pagamentos via Pix
+  </h3>
+  <p class="text-sm text-[#4C5267] mt-2">
+    Permite transferências instantâneas...
+  </p>
+</div>
+```
+
+**Estilo:** `bg-white`, `border-radius: 8px`, `padding: 28px 24px 24px`.
+
+---
+
+### Section Labels / Badges
+
+Pequenas pílulas usadas para rotular seções (ex: "Integrações", "Depoimentos"):
+```html
+<!-- Variante com border -->
+<span class="mb-8 font-bold text-sm border rounded-full px-3 py-2 border-[#E2E7F1] leading-[10px]">
+  Integrações
+</span>
+
+<!-- Variante com background branco + border -->
+<div class="inline-flex items-center px-3 py-2 bg-white border border-[#E2E7F1] rounded-full mb-6">
+  <span class="text-sm font-semibold text-[#204749]">Depoimentos</span>
+</div>
+```
+
+---
+
+### Seção de Pricing (Dark Background)
+```html
+<section class="bg-[#204749] text-white relative overflow-hidden
+  px-6 py-8 tablet:py-16 desktopDefault:p-[120px] desktopXL:px-[194px]">
+
+  <div class="max-w-[1312px] mx-auto grid desktopDefault:grid-cols-2 gap-8">
+    <!-- Coluna esquerda: texto -->
+    <div>
+      <h2 class="text-[48px] font-semibold tracking-[-1.92px] text-white">
+        Nossos clientes pagam apenas
+        <span class="text-[#9EEA6C]">R$0,80 por Pix recebido.</span>
+      </h2>
+      <a class="btn-primary-outline mt-8">Veja os preços →</a>
+    </div>
+
+    <!-- Coluna direita: calculadora interativa -->
+    <div class="bg-white/[0.05] rounded-xl border border-white/[0.24] p-6">
+      <p class="text-sm text-white/60">Você vende...</p>
+      <div class="flex items-baseline gap-2">
+        <span class="text-white text-2xl font-bold">R$</span>
+        <input type="text" placeholder="0,00"
+          class="w-full text-[48px] font-bold text-white bg-transparent
+                 placeholder:text-white/[0.29] focus:outline-none" />
+      </div>
+      <!-- Separador com ícone de seta -->
+      <!-- Resultado "Você recebe..." -->
+    </div>
+  </div>
+</section>
+```
+
+---
+
+### Testimonial Cards
+
+**Layout:** Carrossel horizontal com scroll suave.
+```html
+<a href="https://x.com/..."
+  class="hover:shadow-[0px_0px_12px_0px_#00000033] transition-all duration-300
+         flex-1 block h-full bg-white
+         max-w-[560px] w-[80vw] tablet:w-full
+         pl-6 pr-8 pt-6 pb-10
+         border border-[#E2E7F1]">
+  <div class="flex items-center gap-3 mb-4">
+    <img class="rounded-full w-10 h-10" />
+    <div>
+      <p class="font-semibold text-[#244C4E]">Nome</p>
+      <p class="text-sm text-[#4C5267]">@handle</p>
+    </div>
+    <!-- Ícone do Twitter/X (verde #9EEA6C) -->
+  </div>
+  <p class="text-[#4C5267]">Depoimento...</p>
+</a>
+```
+
+**Hover:** `box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.2)`
+
+---
+
+### FAQ Accordion
+```html
+<div class="border-t last:border-b tablet:border-x border-[#E2E7F1]
+            hover:bg-[#F6F8FA] overflow-hidden transition-colors">
+  <div class="p-6 flex items-center gap-4 cursor-pointer">
+    <h3 class="text-xl font-semibold">Pergunta?</h3>
+    <span class="ml-auto">+</span> <!-- ou ícone chevron -->
+  </div>
+  <div class="px-6 pb-6 text-[#4C5267]">Resposta...</div>
+</div>
+```
+
+---
+
+### Botões
+
+#### Primário (CTA Principal)
+```html
+<a class="
+  text-[16px] font-fustat font-semibold
+  flex gap-2 items-center
+  py-3 px-4
+  rounded-full
+  bg-[#9EEA6C]
+  text-[#244C4E]
+  hover:bg-[#244C4E]
+  hover:text-[#9EEA6C]
+  transition-all duration-300
+  hover:scale-[102%]
+  leading-[20px]
+">
+  Começar agora →
+</a>
+```
+
+#### Secundário / Ghost
+```html
+<a class="
+  text-[16px] font-fustat font-semibold
+  flex gap-2 items-center
+  py-3 px-4
+  rounded-full
+  bg-[#FFF]
+  text-[#244C4E]
+  hover:bg-[#244C4E]
+  hover:text-[#9EEA6C]
+  transition-all duration-300
+  leading-[20px]
+">
+  Por que usar?
+</a>
+```
+
+#### Transparente (Nav)
+```html
+<a class="
+  text-[16px] font-fustat font-semibold
+  flex gap-2 items-center
+  py-3 px-4
+  rounded-full
+  bg-transparent
+  text-[#244C4E]
+  hover:bg-[#F6F8FA]
+  hover:scale-[102%]
+  transition-all duration-300
+  leading-[11px]
+">
+  Login
+</a>
+```
+
+**Resumo dos botões:**
+
+| Variante    | Background    | Texto     | Hover BG   | Hover Texto | Border Radius |
+|-------------|---------------|-----------|------------|-------------|---------------|
+| Primary     | `#9EEA6C`     | `#244C4E` | `#244C4E`  | `#9EEA6C`   | `9999px`      |
+| Secondary   | `#FFFFFF`     | `#244C4E` | `#244C4E`  | `#9EEA6C`   | `9999px`      |
+| Ghost (nav) | `transparent` | `#244C4E` | `#F6F8FA`  | `#244C4E`   | `9999px`      |
+
+---
+
+### Inputs e Formulários
+
+O único input da página está na calculadora de preços (seção dark):
+```html
+<input
+  type="text"
+  placeholder="0,00"
+  class="
+    w-full text-start
+    text-[48px] font-bold
+    text-white
+    bg-transparent
+    placeholder:text-white/[0.29]
+    focus:outline-none
+    caret-transparent
+  "
+/>
+```
+
+**Estilo:** sem border, sem background, apenas tipografia grande em fundo escuro.
+
+---
+
+### Seção Final de CTA (Fim de Página)
+```html
+<div class="flex-1 bg-[#9EEA6C] flex flex-col desktopDefault:flex-row">
+  <!-- Conteúdo textual -->
+  <div class="px-6 py-16 tablet:px-8 desktopDefault:px-16 desktopDefault:py-[100px] desktopXL:px-[94px] desktopDefault:flex-1">
+    <h2 class="text-[#204749] font-semibold">
+      Você chegou no fim da página.
+    </h2>
+    <p class="text-[#204749]">
+      Se chegou até aqui, é porque tá interessado.
+      Então vai lá, faz logo o cadastro.
+    </p>
+    <a class="btn-dark mt-8">Vai, clica nesse botão →</a>
+  </div>
+  <!-- Ilustração (coluna direita) -->
+  <div class="px-8 py-6 tablet:p-16 overflow-hidden relative flex justify-center items-center flex-1">
+    <img src="/illustration-cta.svg" />
+  </div>
+</div>
+```
+
+---
+
+### Footer
+```html
+<footer class="grid gap-[1px]">
+  <div class="content-center bg-white">
+    <div class="grid grid-cols-2 tablet:grid-cols-5 gap-8 p-6 tablet:p-8 desktopDefault:px-16">
+      <!-- 5 colunas: Conta, Suporte, Produtos, Website, AI -->
+      <div>
+        <h4 class="font-semibold text-[#244C4E] mb-4">Conta</h4>
+        <ul class="space-y-2 text-[#4C5267]">
+          <li><a href="#">Cadastre-se</a></li>
+          <li><a href="#">Login</a></li>
+        </ul>
+      </div>
+      <!-- ... outras colunas ... -->
+    </div>
+    <!-- Copyright bar -->
+    <div class="border-t border-[#E2E7F1] p-6 flex justify-between items-center">
+      <p class="text-sm text-[#4C5267]">Copyright © 2026 AbacatePay LLC...</p>
+      <!-- Ícones sociais -->
+    </div>
+  </div>
+</footer>
+```
+
+---
+
+## 5. CSS / Tailwind Equivalente
+
+### Exemplos de Classes Reutilizáveis
+```css
+/* Hero Heading */
+.hero-title {
+  @apply text-[68px] font-semibold leading-[105%] tracking-[-0.05em] text-[#204749];
+}
+
+/* Section Heading (H2 grande) */
+.section-heading {
+  @apply text-[48px] font-semibold leading-[100%] tracking-[-0.04em] text-[#244C4E];
+}
+
+/* Section Subheading (H3) */
+.card-heading {
+  @apply text-xl font-semibold leading-[102%] tracking-[-0.4px] text-[#244C4E];
+}
+
+/* Body text */
+.body-text {
+  @apply text-lg font-medium leading-7 text-[#4C5267];
+}
+
+/* Primary Button */
+.btn-primary {
+  @apply text-base font-fustat font-semibold flex gap-2 items-center
+         py-3 px-4 rounded-full
+         bg-[#9EEA6C] text-[#244C4E]
+         hover:bg-[#244C4E] hover:text-[#9EEA6C]
+         transition-all duration-300 hover:scale-[102%];
+}
+
+/* Ghost Button */
+.btn-ghost {
+  @apply text-base font-fustat font-semibold flex gap-2 items-center
+         py-3 px-4 rounded-full
+         bg-transparent text-[#244C4E]
+         hover:bg-[#F6F8FA]
+         transition-all duration-300;
+}
+
+/* Section Badge/Label */
+.section-badge {
+  @apply inline-flex items-center px-3 py-2
+         bg-white border border-[#E2E7F1] rounded-full
+         text-sm font-semibold text-[#204749];
+}
+
+/* Feature Card */
+.feature-card {
+  @apply bg-white rounded-lg overflow-hidden p-6 pt-7;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+  @apply bg-white border border-[#E2E7F1]
+         pl-6 pr-8 pt-6 pb-10
+         hover:shadow-[0px_0px_12px_0px_rgba(0,0,0,0.2)]
+         transition-all duration-300;
+}
+
+/* FAQ Item */
+.faq-item {
+  @apply border-t last:border-b tablet:border-x border-[#E2E7F1]
+         hover:bg-[#F6F8FA] overflow-hidden transition-colors;
+}
+
+/* Diagonal Stripes Pattern */
+.bg-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(226, 231, 241, 0.8) 0px,
+    rgba(226, 231, 241, 0.8) 1px,
+    transparent 1px,
+    transparent 14px
+  );
+}
+
+/* Hero gradient background */
+.hero-bg {
+  background-image: radial-gradient(
+    200% 300% at -30% -60%,
+    rgba(255, 255, 255, 0) 56.43%,
+    rgb(194, 250, 17) 70.92%,
+    rgb(51, 189, 25) 100%
+  );
+}
+```
+
+---
+
+## 6. Tokens de Design
+```css
+:root {
+  /* === CORES PRINCIPAIS === */
+  --primary:           #9EEA6C;   /* Verde CTA principal */
+  --primary-dark:      #204749;   /* Verde escuro / fundo dark */
+  --primary-medium:    #244C4E;   /* Verde médio / texto principal */
+  --primary-bright:    #58C411;   /* Verde brilhante / highlights */
+  --primary-light:     #E6F9DA;   /* Verde muito claro / backgrounds sutis */
+
+  /* === TEXTO === */
+  --text:              #244C4E;   /* Texto principal */
+  --text-secondary:    #4C5267;   /* Texto secundário / parágrafos */
+  --text-muted:        #7C7C8A;   /* Texto muted */
+  --text-on-dark:      #FFFFFF;   /* Texto em fundos escuros */
+
+  /* === BACKGROUNDS === */
+  --background:        #EFF1E7;   /* Fundo do body */
+  --background-page:   #E2E7F1;   /* Fundo do main / gap entre seções */
+  --background-card:   #FFFFFF;   /* Fundo de cards e seções brancas */
+  --background-dark:   #204749;   /* Seção de pricing */
+  --background-hover:  #F6F8FA;   /* Hover de elementos interativos */
+
+  /* === SECONDARY === */
+  --secondary:         #E2E7F1;   /* Border color, divisores */
+  --secondary-dark:    #395C5D;   /* Variação mais escura do dark */
+
+  /* === TIPOGRAFIA === */
+  --font-primary:      'Fustat', sans-serif;
+  --font-fallback:     'Inter Tight', 'Inter', sans-serif;
+
+  --text-xs:           12px;
+  --text-sm:           14px;
+  --text-base:         16px;
+  --text-lg:           18px;
+  --text-xl:           20px;
+  --text-2xl:          24px;
+  --text-3xl:          36px;
+  --text-4xl:          48px;
+  --text-hero:         68px;
+
+  /* === BORDER RADIUS === */
+  --radius-sm:         4px;
+  --radius-md:         8px;
+  --radius-lg:         12px;
+  --radius-full:       9999px;
+
+  /* === SPACING === */
+  --spacing-xs:        4px;
+  --spacing-sm:        8px;
+  --spacing-md:        16px;
+  --spacing-lg:        24px;
+  --spacing-xl:        32px;
+  --spacing-2xl:       48px;
+  --spacing-3xl:       64px;
+  --spacing-section:   120px;
+
+  /* === SOMBRAS === */
+  --shadow-card:       0 8px 24px rgba(149, 157, 165, 0.20), 0 0 0 2px rgba(0,0,0,0.06);
+  --shadow-hover:      0px 0px 12px 0px rgba(0,0,0,0.20);
+
+  /* === TRANSIÇÕES === */
+  --transition-fast:   all 0.3s ease;
+  --transition-medium: all 0.5s ease;
+
+  /* === BREAKPOINTS === */
+  --bp-tablet:         810px;
+  --bp-desktop:        1440px;
+  --bp-desktop-xl:     1698px;
+}
+```
+
+---
+
+## Notas de Implementação
+
+**Efeito de "gap como borda":** O design usa `gap-[1px]` com o fundo `#E2E7F1` do `<main>` para criar separações visuais entre seções sem usar `border`. Cada seção branca fica isolada visualmente, com 1px de "borda" ao redor.
+
+**Animações:** Classes como `animate-pulse-slow-2` a `animate-pulse-slow-6` sugerem animações customizadas de pulsação para os cards flutuantes no hero. Adicionar no Tailwind:
+```js
+// tailwind.config.js
+keyframes: {
+  pulseSlow: {
+    '0%, 100%': { opacity: '1', transform: 'translateY(0px)' },
+    '50%': { opacity: '0.8', transform: 'translateY(-8px)' },
+  },
+},
+animation: {
+  'pulse-slow-2': 'pulseSlow 3s ease-in-out 0.4s infinite',
+  'pulse-slow-3': 'pulseSlow 3.5s ease-in-out 0.8s infinite',
+  'pulse-slow-4': 'pulseSlow 4s ease-in-out 1.2s infinite',
+  'pulse-slow-5': 'pulseSlow 3.2s ease-in-out 1.6s infinite',
+  'pulse-slow-6': 'pulseSlow 3.8s ease-in-out 2s infinite',
+},
+```
+
+**AOS (Animate On Scroll):** A hero section usa `aos-init aos-animate` — a página usa a biblioteca [AOS](https://michalsnik.github.io/aos/) para animações de entrada.
