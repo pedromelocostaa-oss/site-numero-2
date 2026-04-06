@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jet Clean — Comprar | numero2</title>
+  <meta name="description" content="Ducha Higiênica Jet Clean. R$247 com frete grátis. Instalação em 8 minutos, sem obra, sem energia elétrica." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ============================
+       PRODUTO PAGE STYLES
+       ============================ */
+
+    .produto-page {
+      min-height: 100vh;
+      background: var(--off-white);
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--beige-dark);
+      background: var(--white);
+    }
+    .breadcrumb-inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: #888;
+    }
+    .breadcrumb-inner a {
+      color: #888;
+      transition: color var(--transition);
+    }
+    .breadcrumb-inner a:hover { color: var(--blue); }
+    .breadcrumb-sep { color: #ccc; }
+    .breadcrumb-current { color: var(--black); font-weight: 500; }
+
+    /* MAIN LAYOUT */
+    .produto-main {
+      padding: 48px 0 80px;
+    }
+    .produto-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* IMAGE COLUMN */
+    .produto-images {
+      position: sticky;
+      top: 88px;
+    }
+    .produto-main-image {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--beige-dark);
+      background: var(--beige-light);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #aaa;
+      position: relative;
+      overflow: hidden;
+    }
+    .produto-main-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 30%, rgba(36,113,163,0.06) 0%, transparent 60%);
+    }
+    .produto-main-image .big-icon {
+      font-size: 5rem;
+      opacity: 0.25;
+      position: relative;
+      z-index: 1;
+    }
+    .produto-main-image .img-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.5;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Badge on image */
+    .img-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.04em;
+      z-index: 2;
+    }
+    .img-badge-green {
+      position: absolute;
+      bottom: 18px;
+      right: 18px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 100px;
+      z-index: 2;
+    }
+
+    /* Thumbnails */
+    .produto-thumbs {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    .produto-thumb {
+      flex: 1;
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      background: var(--beige-light);
+      border: 1.5px solid var(--beige-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      opacity: 0.5;
+    }
+    .produto-thumb:first-child {
+      border-color: var(--blue);
+      opacity: 1;
+    }
+    .produto-thumb:hover {
+      opacity: 1;
+      border-color: var(--blue);
+    }
+
+    /* INFO COLUMN */
+    .produto-info { display: flex; flex-direction: column; gap: 0; }
+
+    .produto-brand-tag {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+    }
+
+    .produto-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .produto-subtitle {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    /* Rating inline */
+    .produto-rating {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--beige-dark);
+    }
+    .rating-stars { color: #F59E0B; font-size: 0.95rem; }
+    .rating-count { font-size: 0.85rem; color: #888; }
+    .rating-sep { width: 1px; height: 14px; background: var(--beige-dark); }
+    .rating-badge {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--green);
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    /* Price section */
+    .produto-price-section {
+      margin-bottom: 24px;
+    }
+    .produto-price-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      margin-bottom: 8px;
+    }
+    .produto-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .produto-price-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+    .produto-price-old {
+      font-size: 1.15rem;
+      color: #bbb;
+      text-decoration: line-through;
+    }
+    .produto-price-off {
+      background: #FEF3F2;
+      color: var(--red);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 100px;
+      border: 1px solid #FECDD3;
+    }
+    .produto-installment {
+      font-size: 0.88rem;
+      color: #777;
+    }
+    .produto-installment strong {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    /* Divider */
+    .info-divider {
+      height: 1px;
+      background: var(--beige-dark);
+      margin: 24px 0;
+    }
+
+    /* Benefits list */
+    .produto-benefits-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #999;
+      margin-bottom: 14px;
+    }
+    .produto-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .produto-benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: #333;
+    }
+    .benefit-check {
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: #F0FDF4;
+      border: 1.5px solid #86EFAC;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.65rem;
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    /* CTA Buttons */
+    .produto-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .btn-buy-main {
+      background: var(--blue);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 18px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      width: 100%;
+    }
+    .btn-buy-main:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(36,113,163,0.35);
+    }
+    .btn-buy-wa {
+      background: transparent;
+      color: var(--green);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 14px 32px;
+      border-radius: 100px;
+      border: 2px solid var(--green);
+      cursor: pointer;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+      width: 100%;
+    }
+    .btn-buy-wa:hover {
+      background: var(--green);
+      color: var(--white);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(39,174,96,0.3);
+    }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--beige-light);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      margin-bottom: 24px;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+      justify-content: center;
+    }
+    .trust-item + .trust-item {
+      border-left: 1px solid var(--beige-dark);
+    }
+    .trust-icon { font-size: 1.2rem; }
+    .trust-text { font-size: 0.75rem; font-weight: 600; color: #555; line-height: 1.3; }
+
+    /* What's in the box */
+    .box-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+    .box-card-header {
+      background: var(--beige-light);
+      border-bottom: 1px solid var(--beige-dark);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .box-card-header span { font-size: 1.1rem; }
+    .box-items { padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .box-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: #444;
+    }
+    .box-item::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex-shrink: 0;
+    }
+
+    /* ================================
+       BELOW THE FOLD
+       ================================ */
+    .produto-details {
+      background: var(--white);
+      border-top: 1px solid var(--beige-dark);
+      padding: 72px 0;
+    }
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .detail-card {
+      text-align: center;
+      padding: 32px 24px;
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      transition: all var(--transition);
+    }
+    .detail-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .detail-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .detail-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .detail-card p { font-size: 0.875rem; color: #666; }
+
+    /* STICKY MOBILE BAR */
+    .mobile-sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--beige-dark);
+      padding: 12px 16px;
+      z-index: 700;
+      gap: 10px;
+      align-items: center;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+    .mobile-sticky-price {
+      flex: 1;
+    }
+    .mobile-sticky-price .main { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--blue); }
+    .mobile-sticky-price .old { font-size: 0.8rem; color: #bbb; text-decoration: line-through; display: block; margin-top: -4px; }
+
+    /* ================================
+       RESPONSIVE
+       ================================ */
+    @media (max-width: 900px) {
+      .produto-grid { grid-template-columns: 1fr; gap: 40px; }
+      .produto-images { position: static; }
+      .details-grid { grid-template-columns: 1fr; gap: 16px; }
+      .mobile-sticky-bar { display: flex; }
+      .produto-page { padding-bottom: 80px; }
+    }
+
+    @media (max-width: 600px) {
+      .produto-main { padding: 24px 0 60px; }
+      .produto-main-image { aspect-ratio: 1; }
+      .produto-price-main { font-size: 2.4rem; }
+      .trust-bar { flex-direction: column; gap: 12px; }
+      .trust-item + .trust-item { border-left: none; border-top: 1px solid var(--beige-dark); padding-top: 12px; }
+      .trust-item { justify-content: flex-start; width: 100%; }
+      .produto-thumbs { display: none; }
+    }
+  </style>
+</head>
+<body class="page-top produto-page">
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegação principal">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="numero2 - voltar ao início">
+        <span class="blue">numero</span><span class="black">2</span>
+        <span class="logo-tagline">Higiene Moderna</span>
+      </a>
+      <div class="tab-switcher" role="tablist" aria-label="Tipo de cliente">
+        <a href="index.html" class="tab-btn" style="text-decoration:none;">Para você</a>
+        <a href="index.html" class="tab-btn" style="text-decoration:none;">Para empresas</a>
+      </div>
+      <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20comprar%20o%20Jet%20Clean" target="_blank" rel="noopener" class="nav-cta" aria-label="Comprar pelo WhatsApp">
+        WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <div class="container">
+      <div class="breadcrumb-inner">
+        <a href="index.html">Início</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current">Ducha Higiênica Jet Clean</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN PRODUCT SECTION -->
+  <main class="produto-main" id="main-content">
+    <div class="container">
+      <div class="produto-grid">
+
+        <!-- COLUNA ESQUERDA — Imagem -->
+        <div class="produto-images">
+          <div class="produto-main-image" role="img" aria-label="Ducha Higiênica Jet Clean — imagem do produto">
+            <div class="img-badge">−17% OFF</div>
+            <div class="big-icon" aria-hidden="true">🚿</div>
+            <div class="img-label">Jet Clean</div>
+            <div class="img-badge-green" aria-hidden="true">✓ Frete Grátis</div>
+          </div>
+          <div class="produto-thumbs" role="list" aria-label="Ângulos do produto">
+            <div class="produto-thumb" role="listitem" aria-label="Vista frontal" title="Vista frontal">🚿</div>
+            <div class="produto-thumb" role="listitem" aria-label="Vista lateral" title="Vista lateral">🔧</div>
+            <div class="produto-thumb" role="listitem" aria-label="Instalação" title="Instalação">⚙️</div>
+            <div class="produto-thumb" role="listitem" aria-label="Detalhes do bico" title="Detalhes do bico">💧</div>
+          </div>
+        </div>
+
+        <!-- COLUNA DIREITA — Info -->
+        <div class="produto-info">
+
+          <div class="produto-brand-tag">numero2</div>
+
+          <h1 class="produto-title">Ducha Higiênica<br>Jet Clean</h1>
+
+          <p class="produto-subtitle">Bidê acoplável ao vaso sanitário. Instalação em 8 minutos, sem obra e sem energia elétrica.</p>
+
+          <!-- Rating -->
+          <div class="produto-rating">
+            <span class="rating-stars" aria-label="4.9 estrelas">★★★★★</span>
+            <span class="rating-count">4.9 (312 avaliações)</span>
+            <div class="rating-sep" aria-hidden="true"></div>
+            <span class="rating-badge">+ 3.000 vendidos</span>
+          </div>
+
+          <!-- Price -->
+          <div class="produto-price-section">
+            <div class="produto-price-label">Preço especial de lançamento</div>
+            <div class="produto-price-row">
+              <span class="produto-price-main" aria-label="R$ 247">R$247</span>
+              <span class="produto-price-old" aria-label="antes R$ 297">R$297</span>
+              <span class="produto-price-off" aria-label="25% de desconto">−17% OFF</span>
+            </div>
+            <div class="produto-installment">
+              ou <strong>12x de R$23,58</strong> sem juros no cartão
+            </div>
+          </div>
+
+          <div class="info-divider" aria-hidden="true"></div>
+
+          <!-- Benefits -->
+          <div class="produto-benefits-title">O que você ganha</div>
+          <ul class="produto-benefits" aria-label="Benefícios do produto">
+            <li class="produto-benefit">
+              <span class="benefit-check" aria-hidden="true">✓</span>
+              Jato de água ajustável — pressão certa para cada pessoa
+            </li>
+            <li class="produto-benefit">
+              <span class="benefit-check" aria-hidden="true">✓</span>
+              Instalação sem ferramentas especiais em 8 minutos
+            </li>
+            <li class="produto-benefit">
+              <span class="benefit-check" aria-hidden="true">✓</span>
+              Compatível com a maioria dos vasos brasileiros
+            </li>
+            <li class="produto-benefit">
+              <span class="benefit-check" aria-hidden="true">✓</span>
+              Material de alta qualidade — resistente e durável
+            </li>
+            <li class="produto-benefit">
+              <span class="benefit-check" aria-hidden="true">✓</span>
+              Design slim e discreto — não muda a aparência do banheiro
+            </li>
+            <li class="produto-benefit">
+              <span class="benefit-check" aria-hidden="true">✓</span>
+              Bico com autolimpeza — higiene garantida sempre
+            </li>
+          </ul>
+
+          <!-- CTAs -->
+          <div class="produto-ctas">
+            <a href="#" class="btn-buy-main" role="button" aria-label="Comprar Jet Clean por R$ 247">
+              Comprar agora — R$247 →
+            </a>
+            <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20comprar%20o%20Jet%20Clean%20por%20R%24247" target="_blank" rel="noopener" class="btn-buy-wa" aria-label="Pedir pelo WhatsApp">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pedir pelo WhatsApp
+            </a>
+          </div>
+
+          <!-- Trust bar -->
+          <div class="trust-bar" role="list" aria-label="Garantias da compra">
+            <div class="trust-item" role="listitem">
+              <span class="trust-icon" aria-hidden="true">🚚</span>
+              <div class="trust-text">Frete<br>Grátis</div>
+            </div>
+            <div class="trust-item" role="listitem">
+              <span class="trust-icon" aria-hidden="true">🛡️</span>
+              <div class="trust-text">Garantia<br>1 Ano</div>
+            </div>
+            <div class="trust-item" role="listitem">
+              <span class="trust-icon" aria-hidden="true">↩️</span>
+              <div class="trust-text">30 dias<br>p/ trocar</div>
+            </div>
+          </div>
+
+          <!-- What's in the box -->
+          <div class="box-card" role="region" aria-label="Conteúdo da caixa">
+            <div class="box-card-header">
+              <span aria-hidden="true">📦</span> O que vem na caixa
+            </div>
+            <ul class="box-items">
+              <li class="box-item">1× Jet Clean (ducha higiênica completa)</li>
+              <li class="box-item">1× Mangueira de conexão</li>
+              <li class="box-item">1× Adaptador T (encaixe no registro)</li>
+              <li class="box-item">1× Manual de instalação ilustrado</li>
+              <li class="box-item">Fita vedante para vedação perfeita</li>
+            </ul>
+          </div>
+
+        </div><!-- /info -->
+      </div><!-- /grid -->
+    </div>
+  </main>
+
+  <!-- DETAILS SECTION -->
+  <section class="produto-details" aria-label="Diferenciais do produto">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Por que escolher</span>
+        <h2>Feito para o Brasil</h2>
+        <p>Desenvolvido para funcionar com os vasos, a pressão de água e o estilo de vida brasileiro.</p>
+      </div>
+      <div class="details-grid">
+        <div class="detail-card">
+          <div class="detail-icon" aria-hidden="true">⏱</div>
+          <h3>8 minutos de instalação</h3>
+          <p>Sem obra, sem encanador, sem ferramentas especiais. Você mesmo instala com o manual incluído.</p>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon" aria-hidden="true">🌊</div>
+          <h3>Jato ajustável</h3>
+          <p>Controle de pressão para a higiene certa. Gentil para recuperação cirúrgica, potente para uso diário.</p>
+        </div>
+        <div class="detail-card">
+          <div class="detail-icon" aria-hidden="true">🏆</div>
+          <h3>Compatível com 97% dos vasos</h3>
+          <p>Funciona com todos os modelos padrão brasileiros. Se não encaixar, devolvemos o dinheiro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASSURANCE / FINAL CTA -->
+  <section style="background:var(--beige-light); padding:72px 0; text-align:center;" aria-label="Chamada para ação final">
+    <div class="container">
+      <div style="max-width:540px; margin:0 auto;">
+        <span class="section-label">Última chamada</span>
+        <h2 style="margin-bottom:16px;">Pronto para evoluir?</h2>
+        <p style="margin-bottom:32px; font-size:1.05rem;">Instalação em 8 minutos. Satisfação garantida por 30 dias. Frete grátis.</p>
+        <div class="price-block" style="justify-content:center; margin-bottom:28px;">
+          <span class="price-main">R$247</span>
+          <span class="price-old">R$297</span>
+          <span class="price-badge">−17% OFF</span>
+        </div>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+          <a href="#" class="btn btn-primary btn-lg" role="button">Comprar agora →</a>
+          <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20comprar%20o%20Jet%20Clean" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+        <p style="margin-top:16px; font-size:0.8rem; color:#aaa;">🔒 Compra 100% segura · Entrega em até 7 dias úteis</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="logo">
+          <span class="blue">numero</span><span class="black">2</span>
+          <span class="logo-tagline">Higiene Moderna</span>
+        </div>
+        <nav class="footer-links" aria-label="Links do rodapé">
+          <a href="index.html">Início</a>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#">Política de Troca</a>
+          <a href="#">Privacidade</a>
+        </nav>
+        <p class="footer-copy">© 2024 numero2. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MOBILE STICKY BAR -->
+  <div class="mobile-sticky-bar" role="region" aria-label="Barra de compra fixada">
+    <div class="mobile-sticky-price">
+      <span class="main" aria-label="R$ 247">R$247</span>
+      <span class="old" aria-label="antes R$ 297">antes R$297</span>
+    </div>
+    <a href="#" class="btn btn-primary" style="flex:1; border-radius:100px; padding:14px 20px; font-size:0.9rem;" role="button">
+      Comprar agora →
+    </a>
+  </div>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20comprar%20o%20Jet%20Clean" target="_blank" rel="noopener" class="wa-float" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    /* Navbar shadow on scroll */
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+      navbar.style.boxShadow = window.scrollY > 10
+        ? '0 2px 16px rgba(0,0,0,0.08)'
+        : 'none';
+    }, { passive: true });
+  </script>
+</body>
+</html>
