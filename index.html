@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>numero2 — Jet Clean | Higiene Moderna</title>
+  <meta name="description" content="Bidê higiênico acoplável ao vaso sanitário. Sem obra, sem energia. Instalação em 8 minutos. R$247." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ============================
+       PAGE-SPECIFIC STYLES
+       ============================ */
+
+    /* HERO B2C */
+    .hero {
+      background: var(--beige-light);
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--beige-dark);
+      overflow: hidden;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; right: -120px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(36,113,163,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .hero-text { position: relative; z-index: 1; }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+    .hero-label::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+    .hero h1 {
+      margin-bottom: 18px;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--blue);
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 28px;
+      max-width: 440px;
+    }
+    .hero-price {
+      margin-bottom: 32px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-image {
+      position: relative;
+    }
+    .hero-product-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      border-radius: var(--radius-xl);
+    }
+    .hero-badge {
+      position: absolute;
+      top: 20px; left: -16px;
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      box-shadow: var(--shadow-md);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--black);
+      white-space: nowrap;
+    }
+    .hero-badge span { color: var(--green); }
+    .hero-badge2 {
+      position: absolute;
+      bottom: 20px; right: -16px;
+      background: var(--blue);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      box-shadow: var(--shadow-md);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    /* PROBLEM SECTION */
+    .section-problem { background: var(--off-white); }
+    .problem-cards { margin: 40px 0; }
+    .problem-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      padding: 32px;
+    }
+    .problem-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .problem-icon {
+      font-size: 1.6rem;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--beige-light);
+      border-radius: var(--radius-sm);
+    }
+    .problem-card h3 { font-size: 1.2rem; }
+    .problem-transition {
+      text-align: center;
+      margin: 40px 0 32px;
+    }
+    .problem-transition p {
+      font-size: 1.15rem;
+      color: var(--black);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      max-width: 560px;
+      margin: 0 auto 24px;
+    }
+
+    /* SOLUTION SECTION */
+    .section-solution { background: var(--beige-light); }
+    .solution-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .solution-benefits-left,
+    .solution-benefits-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .benefit-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .benefit-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--beige-dark);
+    }
+    .benefit-text h4 { font-size: 0.95rem; margin-bottom: 4px; }
+    .benefit-text p { font-size: 0.85rem; color: #666; line-height: 1.5; }
+    .solution-cta { text-align: center; margin-top: 48px; }
+    .solution-image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-xl);
+    }
+
+    /* HOW IT WORKS */
+    .section-how { background: var(--off-white); }
+    .how-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .how-steps { display: flex; flex-direction: column; gap: 36px; }
+    .how-step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(36,113,163,0.3);
+    }
+    .step-text h3 { font-size: 1.1rem; margin-bottom: 6px; }
+    .step-text p { font-size: 0.9rem; color: #666; }
+    .how-image {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-xl);
+    }
+
+    /* INSTALLATION */
+    .section-install { background: var(--beige-light); }
+    .install-layout {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 32px;
+      align-items: start;
+      margin-bottom: 40px;
+    }
+    .install-diagram {
+      background: var(--blue-light);
+      border: 1px solid rgba(36,113,163,0.15);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+    }
+    .install-diagram h3 {
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      color: var(--blue-dark);
+    }
+    .install-steps-list { display: flex; flex-direction: column; gap: 20px; }
+    .install-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .install-step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .install-step p { font-size: 0.9rem; color: #444; margin-top: 6px; }
+    .install-step strong { font-size: 0.95rem; color: var(--black); }
+    .install-cards { display: flex; flex-direction: column; gap: 16px; }
+    .install-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all var(--transition);
+    }
+    .install-card:hover {
+      box-shadow: var(--shadow-sm);
+      border-color: var(--blue);
+    }
+    .install-card-icon {
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .install-card h4 { font-size: 0.95rem; margin-bottom: 3px; }
+    .install-card p { font-size: 0.83rem; color: #666; }
+    .install-cta { text-align: center; }
+
+    /* FOR WHO */
+    .section-forwho { background: var(--off-white); }
+    .forwho-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      text-align: center;
+      transition: all var(--transition);
+    }
+    .forwho-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+      border-color: var(--blue);
+    }
+    .forwho-icon {
+      font-size: 2.2rem;
+      margin-bottom: 14px;
+    }
+    .forwho-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .forwho-card p { font-size: 0.875rem; color: #666; line-height: 1.6; }
+
+    /* TESTIMONIALS */
+    .section-testimonials {
+      background: var(--brown-dark);
+      padding: 80px 0;
+    }
+    .section-testimonials .section-header h2 { color: var(--white); }
+    .section-testimonials .section-header p { color: rgba(255,255,255,0.6); }
+    .testimonial-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: all var(--transition);
+    }
+    .testimonial-card:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .testimonial-card blockquote {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      margin: 12px 0 20px;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .author-context {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* OBJECTIONS */
+    .section-objections { background: var(--beige-light); }
+    .objections-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .objections-text-col { position: sticky; top: 88px; }
+    .objections-text-col h2 { margin-bottom: 16px; }
+    .objections-text-col p {
+      font-size: 0.95rem;
+      color: #666;
+      max-width: 320px;
+    }
+
+    /* FAQ */
+    .section-faq { background: var(--off-white); }
+
+    /* CTA FINAL */
+    .section-cta-final {
+      background: var(--beige-light);
+      text-align: center;
+      padding: 100px 0;
+    }
+    .cta-final-inner { max-width: 640px; margin: 0 auto; }
+    .cta-final-inner h2 { margin-bottom: 16px; }
+    .cta-final-inner > p {
+      font-size: 1.05rem;
+      color: #666;
+      margin-bottom: 32px;
+    }
+    .cta-final-inner .price-block {
+      justify-content: center;
+      margin-bottom: 36px;
+    }
+    .cta-final-btns {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .guarantee-note {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* ================================
+       B2B STYLES
+       ================================ */
+    .hero-b2b {
+      background: var(--brown-dark);
+      padding: 100px 0 80px;
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-b2b::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(36,113,163,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-b2b-inner { max-width: 720px; position: relative; z-index: 1; }
+    .hero-b2b-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 24px;
+    }
+    .hero-b2b h1 { color: var(--white); margin-bottom: 20px; }
+    .hero-b2b h1 em { font-style: italic; color: #7EC8E3; }
+    .hero-b2b .hero-sub { color: rgba(255,255,255,0.65); font-size: 1.1rem; margin-bottom: 36px; max-width: 540px; }
+
+    .section-institutions { background: var(--off-white); }
+    .institution-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      padding: 26px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: all var(--transition);
+    }
+    .institution-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--blue);
+      transform: translateX(4px);
+    }
+    .institution-icon {
+      font-size: 1.8rem;
+      width: 52px; height: 52px;
+      background: var(--beige-light);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .institution-card h4 { font-size: 0.97rem; margin-bottom: 4px; }
+    .institution-card p { font-size: 0.83rem; color: #666; }
+
+    .section-b2b-benefits { background: var(--beige-light); }
+    .b2b-benefit-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      transition: all var(--transition);
+    }
+    .b2b-benefit-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+    .b2b-benefit-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+    }
+    .b2b-benefit-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+    .b2b-benefit-card p { font-size: 0.875rem; color: #666; }
+
+    .section-b2b-process { background: var(--off-white); }
+    .b2b-process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      align-items: start;
+      position: relative;
+    }
+    .b2b-process-steps::before {
+      content: '';
+      position: absolute;
+      top: 22px; left: calc(16.67% + 22px); right: calc(16.67% + 22px);
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue) 0%, var(--blue) 50%, var(--beige-dark) 50%);
+      background-size: 200% 100%;
+      border-radius: 2px;
+    }
+    .b2b-step {
+      text-align: center;
+      position: relative;
+    }
+    .b2b-step-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: var(--white);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      box-shadow: 0 4px 12px rgba(36,113,163,0.3);
+      position: relative;
+      z-index: 1;
+    }
+    .b2b-step h3 { font-size: 1rem; margin-bottom: 8px; }
+    .b2b-step p { font-size: 0.875rem; color: #666; }
+
+    .section-b2b-cta {
+      background: var(--brown-dark);
+      text-align: center;
+      padding: 100px 0;
+    }
+    .section-b2b-cta h2 { color: var(--white); margin-bottom: 16px; }
+    .section-b2b-cta p { color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 40px; }
+    .b2b-cta-box {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 40px 48px;
+    }
+    .b2b-cta-box small {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 4px;
+    }
+
+    .section-b2b-faq { background: var(--off-white); }
+
+    /* ================================
+       RESPONSIVE FIXES
+       ================================ */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-badge, .hero-badge2 { display: none; }
+      .solution-layout { grid-template-columns: 1fr; }
+      .solution-benefits-left,
+      .solution-benefits-right { flex-direction: row; flex-wrap: wrap; }
+      .how-layout { grid-template-columns: 1fr; gap: 40px; }
+      .install-layout { grid-template-columns: 1fr; }
+      .objections-layout { grid-template-columns: 1fr; gap: 32px; }
+      .objections-text-col { position: static; }
+      .b2b-process-steps::before { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 80px 0 60px; }
+      .hero h1 { font-size: 2rem; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; justify-content: center; }
+      .b2b-process-steps { grid-template-columns: 1fr; }
+      .b2b-cta-box { padding: 32px 24px; width: 100%; }
+      .cta-final-btns { flex-direction: column; align-items: center; }
+      .cta-final-btns .btn { width: 100%; max-width: 360px; }
+      .hero-b2b { padding: 80px 0 60px; }
+    }
+  </style>
+</head>
+<body class="page-top">
+
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Navegação principal">
+    <div class="container">
+      <a href="index.html" class="logo" aria-label="numero2 - início">
+        <span class="blue">numero</span><span class="black">2</span>
+        <span class="logo-tagline">Higiene Moderna</span>
+      </a>
+      <div class="tab-switcher" role="tablist" aria-label="Tipo de cliente">
+        <button class="tab-btn active" id="tab-b2c" role="tab" aria-selected="true" aria-controls="content-b2c" onclick="switchTab('b2c')">Para você</button>
+        <button class="tab-btn" id="tab-b2b" role="tab" aria-selected="false" aria-controls="content-b2b" onclick="switchTab('b2b')">Para empresas</button>
+      </div>
+      <a href="produto.html" class="nav-cta" aria-label="Comprar Jet Clean">
+        Comprar agora <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ==============================
+       ABA B2C
+       ============================== -->
+  <div id="content-b2c" class="tab-content active" role="tabpanel" aria-labelledby="tab-b2c">
+
+    <!-- 1. HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <div class="hero-label">Novo · Jet Clean</div>
+            <h1>Chega de papel.<br><em>Seu banheiro precisa evoluir.</em></h1>
+            <p class="hero-sub">Higiene de verdade, sem obras, sem energia elétrica. Instalação em 8 minutos.</p>
+            <div class="hero-price price-block">
+              <span class="price-main">R$247</span>
+              <span class="price-old">R$297</span>
+              <span class="price-badge">−17% OFF</span>
+            </div>
+            <div class="hero-ctas">
+              <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20comprar%20o%20Jet%20Clean" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg" aria-label="Pedir pelo WhatsApp">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                Pedir pelo WhatsApp
+              </a>
+              <a href="produto.html" class="btn btn-primary btn-lg">
+                Comprar agora →
+              </a>
+            </div>
+          </div>
+          <div class="hero-image" aria-hidden="true">
+            <div class="product-placeholder hero-product-img">
+              <span class="icon">🚿</span>
+              <span>Jet Clean</span>
+            </div>
+            <div class="hero-badge"><span>✓</span> Frete Grátis</div>
+            <div class="hero-badge2">⏱ 8 min de instalação</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. SOCIAL PROOF BAR -->
+    <div class="proof-bar" role="region" aria-label="Dados de impacto">
+      <div class="container">
+        <div class="proof-bar-grid">
+          <div class="proof-item">
+            <strong>8 min</strong>
+            <span>instalação completa</span>
+          </div>
+          <div class="proof-item">
+            <strong>80%</strong>
+            <span>menos papel higiênico</span>
+          </div>
+          <div class="proof-item">
+            <strong>Zero obra</strong>
+            <span>sem quebrar nada</span>
+          </div>
+          <div class="proof-item">
+            <strong>Sem energia</strong>
+            <span>funciona sem eletricidade</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. O PROBLEMA -->
+    <section class="section-problem">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">O problema</span>
+          <h2>O problema que ninguém fala</h2>
+          <p>Você provavelmente usa algo que não funciona — e foi condicionado a achar normal.</p>
+        </div>
+        <div class="problem-cards grid-2">
+          <div class="problem-card">
+            <div class="problem-card-header">
+              <div class="problem-icon">🧻</div>
+              <h3>Papel Higiênico</h3>
+            </div>
+            <ul class="x-list">
+              <li>Não limpa de verdade — apenas espalha</li>
+              <li>Custo mensal alto e recorrente</li>
+              <li>Entope encanamentos com frequência</li>
+              <li>Pode causar irritações e infecções</li>
+              <li>Impacto ambiental enorme</li>
+              <li>Falta justamente quando você precisa</li>
+            </ul>
+          </div>
+          <div class="problem-card">
+            <div class="problem-card-header">
+              <div class="problem-icon">🚿</div>
+              <h3>Chuveirinho Higiênico</h3>
+            </div>
+            <ul class="x-list">
+              <li>Requer pressão no cano — pode vazar</li>
+              <li>Instalação exige encanador ou obra</li>
+              <li>Molha tudo ao redor quando usado</li>
+              <li>Difícil para idosos e mobilidade reduzida</li>
+              <li>Necessita de mangueira longa solta</li>
+              <li>Acumula bactérias no bico se não limpo</li>
+            </ul>
+          </div>
+        </div>
+        <div class="problem-transition">
+          <p>"Existe uma forma melhor. E é mais simples do que você imagina."</p>
+          <a href="#solucao" class="btn btn-outline" onclick="smoothScroll(event, 'solucao')">Conhecer a solução</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. A SOLUÇÃO -->
+    <section class="section-solution" id="solucao">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">A solução</span>
+          <h2>Seu banheiro precisa evoluir</h2>
+          <p>O Jet Clean é acoplado diretamente ao vaso. Sem obra. Sem energia. Sem complicação.</p>
+        </div>
+        <div class="solution-layout">
+          <div class="solution-benefits-left">
+            <div class="benefit-item">
+              <div class="benefit-icon">💧</div>
+              <div class="benefit-text">
+                <h4>Jato preciso e ajustável</h4>
+                <p>Pressão controlável para o conforto de cada pessoa.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">⚡</div>
+              <div class="benefit-text">
+                <h4>Sem energia elétrica</h4>
+                <p>Funciona com a própria pressão da água da casa.</p>
+              </div>
+            </div>
+          </div>
+          <div class="solution-image product-placeholder" aria-label="Foto do produto Jet Clean" style="aspect-ratio:3/4; border-radius: 22px;">
+            <span class="icon">🚿</span>
+            <span>Jet Clean</span>
+          </div>
+          <div class="solution-benefits-right">
+            <div class="benefit-item">
+              <div class="benefit-icon">🔧</div>
+              <div class="benefit-text">
+                <h4>Instalação em 8 minutos</h4>
+                <p>Qualquer pessoa instala. Sem ferramentas especiais.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">🛡️</div>
+              <div class="benefit-text">
+                <h4>Bico com autolimpeza</h4>
+                <p>Higiene automática a cada uso. Zero contato manual.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="solution-cta">
+          <a href="produto.html" class="btn btn-primary btn-lg">Quero o meu Jet Clean →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMO FUNCIONA -->
+    <section class="section-how">
+      <div class="container">
+        <div class="how-layout">
+          <div>
+            <span class="section-label">Como funciona</span>
+            <h2 style="margin-bottom:40px;">Simples assim</h2>
+            <div class="how-steps">
+              <div class="how-step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  <h3>Você senta normalmente</h3>
+                  <p>O Jet Clean está acoplado ao assento do vaso, exatamente como qualquer assento comum.</p>
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  <h3>Gira o controle lateral</h3>
+                  <p>Com um simples giro, o bico avança e o jato de água começa — preciso e na pressão certa.</p>
+                </div>
+              </div>
+              <div class="how-step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  <h3>Limpo. Pronto. Higiene real.</h3>
+                  <p>O bico se autolimpa e retrai automaticamente. Sem contato, sem resíduo, sem papel.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="how-image product-placeholder" aria-label="Ilustração de uso do Jet Clean" style="aspect-ratio:1; border-radius: 22px;">
+            <span class="icon">💧</span>
+            <span>Jato de água</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. INSTALAÇÃO FÁCIL -->
+    <section class="section-install">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Instalação</span>
+          <h2>8 minutos e está pronto</h2>
+          <p>Qualquer pessoa da casa instala. Nenhuma ferramenta especial necessária.</p>
+        </div>
+        <div class="install-layout">
+          <div class="install-diagram">
+            <h3>🔧 Guia de instalação</h3>
+            <div class="install-steps-list">
+              <div class="install-step">
+                <div class="install-step-num">1</div>
+                <div>
+                  <strong>Remova o assento atual</strong>
+                  <p>Desparafuse os pinos do assento existente. Leva menos de 2 minutos.</p>
+                </div>
+              </div>
+              <div class="install-step">
+                <div class="install-step-num">2</div>
+                <div>
+                  <strong>Posicione o Jet Clean</strong>
+                  <p>Encaixe o adaptador T na entrada de água do vaso. Aperte com a mão.</p>
+                </div>
+              </div>
+              <div class="install-step">
+                <div class="install-step-num">3</div>
+                <div>
+                  <strong>Reconecte e teste</strong>
+                  <p>Recoloque o assento por cima, abra o registro e gire o controle para testar.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="install-cards">
+            <div class="install-card">
+              <div class="install-card-icon">🔩</div>
+              <div>
+                <h4>Sem ferramentas especiais</h4>
+                <p>Apenas as mãos. Tudo que precisar vem na caixa.</p>
+              </div>
+            </div>
+            <div class="install-card">
+              <div class="install-card-icon">👷</div>
+              <div>
+                <h4>Sem chamar encanador</h4>
+                <p>Instala você mesmo com o manual e o vídeo de instalação.</p>
+              </div>
+            </div>
+            <div class="install-card">
+              <div class="install-card-icon">🚽</div>
+              <div>
+                <h4>Compatível com 97% dos vasos</h4>
+                <p>Funciona com os principais modelos do Brasil. Senão encaixar, devolvemos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="install-cta">
+          <a href="produto.html" class="btn btn-primary btn-lg">Comprar agora — R$247 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. PARA QUEM É -->
+    <section class="section-forwho">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Para quem é</span>
+          <h2>Mais do que conforto</h2>
+          <p>Para quem a higiene correta não é opcional — é necessidade.</p>
+        </div>
+        <div class="grid-4">
+          <div class="forwho-card">
+            <div class="forwho-icon">👴</div>
+            <h3>Idosos</h3>
+            <p>Mais independência no banheiro. Sem esforço físico desnecessário.</p>
+          </div>
+          <div class="forwho-card">
+            <div class="forwho-icon">🏥</div>
+            <h3>Pós-cirúrgicos</h3>
+            <p>Higiene gentil sem movimentos que gerem desconforto ou dor.</p>
+          </div>
+          <div class="forwho-card">
+            <div class="forwho-icon">🤰</div>
+            <h3>Grávidas</h3>
+            <p>Conforto e higiene extra durante toda a gestação e pós-parto.</p>
+          </div>
+          <div class="forwho-card">
+            <div class="forwho-icon">♿</div>
+            <h3>Mobilidade reduzida</h3>
+            <p>Higiene completa com o mínimo de movimentação e total autonomia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. DEPOIMENTOS -->
+    <section class="section-testimonials" aria-label="Depoimentos de clientes">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label" style="color:rgba(255,255,255,0.5);">O que dizem</span>
+          <h2>Quem já tem, não larga</h2>
+          <p>Mais de 3.000 famílias brasileiras já evoluíram o banheiro.</p>
+        </div>
+        <div class="grid-3">
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>"Instalei em 10 minutos seguindo o manual. Minha mãe tem 74 anos e disse que nunca mais quer voltar pro papel. Produto incrível."</blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">👨</div>
+              <div>
+                <div class="author-name">Ricardo M.</div>
+                <div class="author-context">São Paulo, SP · comprou para a mãe</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>"Fiz cesárea há dois meses e o Jet Clean foi fundamental na recuperação. A higiene fica perfeita sem precisar me contorcer."</blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">👩</div>
+              <div>
+                <div class="author-name">Ana Paula R.</div>
+                <div class="author-context">Belo Horizonte, MG · pós-parto</div>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars" aria-label="5 estrelas">★★★★★</div>
+            <blockquote>"Depois de usar por 3 semanas reduzi o uso de papel em 90%. A água fria no começo assustou, mas em dois dias me acostumei. Não tem como voltar."</blockquote>
+            <div class="testimonial-author">
+              <div class="author-avatar" aria-hidden="true">👨</div>
+              <div>
+                <div class="author-name">Gabriel T.</div>
+                <div class="author-context">Curitiba, PR · cliente comum</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. RESPONDENDO OBJEÇÕES -->
+    <section class="section-objections">
+      <div class="container">
+        <div class="objections-layout">
+          <div class="objections-text-col">
+            <span class="section-label">Tire suas dúvidas</span>
+            <h2>Respostas diretas</h2>
+            <p>As perguntas que todo mundo tem antes de comprar — respondidas sem enrolação.</p>
+          </div>
+          <div class="accordion" role="list" aria-label="Dúvidas frequentes sobre o produto">
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Vai encaixar no meu vaso?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Compatível com 97% dos vasos brasileiros — qualquer modelo padrão funciona. Se por algum motivo não encaixar, devolvemos o dinheiro integralmente, sem burocracia.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                É difícil instalar?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>8 minutos. Sem ferramentas especiais. Tudo que você precisa vem na caixa. Além disso, enviamos manual detalhado e link para vídeo passo a passo. Qualquer pessoa instala.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                A água vai ser fria?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Sim, é água ambiente — temperatura da rede. A maioria dos clientes se adapta em 2 a 3 dias de uso. É diferente, mas rapidamente passa a ser preferível. No verão brasileiro é até refrescante.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                E se eu não gostar?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>30 dias de garantia de satisfação. Se não gostar por qualquer motivo, nos avise dentro do prazo e devolvemos 100% do valor pago. Sem perguntas, sem burocracia.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                É higiênico?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Muito mais higiênico do que papel. O bico tem sistema de autolimpeza — antes e depois de cada uso, água limpa passa pelo bico. Água sempre limpa mais do que secar com papel.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Vai vazar?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>O Jet Clean usa conexão padrão brasileiro — o mesmo sistema de duchas higiênicas já usadas em milhões de casas. Com a fita vedante incluída na caixa, o risco de vazamento é praticamente zero.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. FAQ -->
+    <section class="section-faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Perguntas frequentes</span>
+          <h2>Mais dúvidas?</h2>
+        </div>
+        <div style="max-width:720px; margin:0 auto;">
+          <div class="accordion" role="list" aria-label="Perguntas frequentes">
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Quanto tempo demora a entrega?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Até 7 dias úteis para todo o Brasil. Regiões metropolitanas costumam receber em 3 a 5 dias úteis.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Tem frete grátis?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Sim. Frete 100% grátis para todo o Brasil, independente da cidade ou estado.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Qual a garantia?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>1 ano de garantia do produto contra defeitos de fabricação + 30 dias de garantia de satisfação (pode devolver sem justificativa).</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Posso parcelar?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Sim, em até 12x no cartão de crédito. Também aceitamos Pix com aprovação imediata.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                O que vem na caixa?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>1x Jet Clean completo · 1x Mangueira de conexão · 1x Adaptador T · 1x Manual de instalação · Fita vedante. Tudo para instalar sem precisar comprar nada mais.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. CTA FINAL -->
+    <section class="section-cta-final">
+      <div class="container">
+        <div class="cta-final-inner">
+          <span class="section-label">Hora de decidir</span>
+          <h2>Você já sabe que papel não basta.<br>Agora faça algo a respeito.</h2>
+          <p>Higiene real. Instalação em 8 minutos. Sem obra, sem energia elétrica.</p>
+          <div class="price-block" style="justify-content:center; margin-bottom:32px;">
+            <span class="price-main">R$247</span>
+            <span class="price-old">R$297</span>
+            <span class="price-badge">−17% OFF</span>
+          </div>
+          <div class="cta-final-btns">
+            <a href="produto.html" class="btn btn-primary btn-lg">Comprar agora →</a>
+            <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20comprar%20o%20Jet%20Clean" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              WhatsApp
+            </a>
+          </div>
+          <p class="guarantee-note">🔒 Pagamento seguro · 30 dias para devolver · Frete grátis</p>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /B2C -->
+
+  <!-- ==============================
+       ABA B2B
+       ============================== -->
+  <div id="content-b2b" class="tab-content" role="tabpanel" aria-labelledby="tab-b2b">
+
+    <!-- 1. HERO B2B -->
+    <section class="hero-b2b">
+      <div class="container">
+        <div class="hero-b2b-inner">
+          <div class="hero-b2b-label">Plano Institucional · numero2</div>
+          <h1>Eleve o padrão de higiene<br>da sua <em>instituição.</em></h1>
+          <p class="hero-sub">Solução completa para casas de repouso, hospitais, clínicas e meios de hospedagem. Instalação simples, sem obra, sem manutenção.</p>
+          <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20saber%20sobre%20o%20plano%20para%20instituições%20da%20numero2" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg" aria-label="Entrar em contato pelo WhatsApp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Falar com nosso time
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. PARA QUAIS INSTITUIÇÕES -->
+    <section class="section-institutions">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Quem atendemos</span>
+          <h2>Para quais instituições</h2>
+          <p>Soluções desenvolvidas para ambientes onde higiene é prioridade e conforto é responsabilidade.</p>
+        </div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px;">
+          <div class="institution-card">
+            <div class="institution-icon">🏠</div>
+            <div>
+              <h4>Casas de idosos e ILPIs</h4>
+              <p>Mais independência para residentes. Menos esforço para a equipe de cuidados.</p>
+            </div>
+          </div>
+          <div class="institution-card">
+            <div class="institution-icon">🏥</div>
+            <div>
+              <h4>Hospitais de pequeno porte</h4>
+              <p>Higiene aumentada em apartamentos e enfermarias. Sem obras.</p>
+            </div>
+          </div>
+          <div class="institution-card">
+            <div class="institution-icon">🩺</div>
+            <div>
+              <h4>Clínicas de reabilitação</h4>
+              <p>Suporte à higiene de pacientes em recuperação com máxima autonomia.</p>
+            </div>
+          </div>
+          <div class="institution-card">
+            <div class="institution-icon">🏨</div>
+            <div>
+              <h4>Hotéis e pousadas</h4>
+              <p>Diferencial de qualidade que os hóspedes notam — e comentam nas avaliações.</p>
+            </div>
+          </div>
+          <div class="institution-card">
+            <div class="institution-icon">🏡</div>
+            <div>
+              <h4>Airbnbs</h4>
+              <p>Avaliações 5 estrelas começam pelo banheiro. Destaque-se no mercado.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ARGUMENTOS INSTITUCIONAIS -->
+    <section class="section-b2b-benefits">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Benefícios</span>
+          <h2>Por que escolher o Jet Clean</h2>
+          <p>Resultados mensuráveis. Instalação prática. Impacto imediato.</p>
+        </div>
+        <div class="grid-4">
+          <div class="b2b-benefit-card">
+            <div class="b2b-benefit-icon">⚡</div>
+            <h3>Instalação simples em múltiplos banheiros</h3>
+            <p>Qualquer funcionário instala em 8 minutos. Rollout rápido em toda a instituição.</p>
+          </div>
+          <div class="b2b-benefit-card">
+            <div class="b2b-benefit-icon">🔧</div>
+            <h3>Sem obra, sem manutenção</h3>
+            <p>Zero custo de manutenção após instalação. Funciona sem energia elétrica.</p>
+          </div>
+          <div class="b2b-benefit-card">
+            <div class="b2b-benefit-icon">❤️</div>
+            <h3>Melhora qualidade de vida dos residentes</h3>
+            <p>Autonomia no banheiro é dignidade. Especialmente para idosos e pacientes.</p>
+          </div>
+          <div class="b2b-benefit-card">
+            <div class="b2b-benefit-icon">🏆</div>
+            <h3>Diferencial competitivo real</h3>
+            <p>Hóspedes e familiares percebem. Avaliações melhoram. Reputação cresce.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. COMO FUNCIONA O PLANO EMPRESAS -->
+    <section class="section-b2b-process">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Como funciona</span>
+          <h2>Três passos para transformar sua instituição</h2>
+        </div>
+        <div class="b2b-process-steps">
+          <div class="b2b-step">
+            <div class="b2b-step-num">1</div>
+            <h3>Entre em contato</h3>
+            <p>Fale com nosso time pelo WhatsApp. Conte quantos banheiros e qual é a sua instituição.</p>
+          </div>
+          <div class="b2b-step">
+            <div class="b2b-step-num">2</div>
+            <h3>Receba proposta personalizada</h3>
+            <p>Condições especiais para volume, prazo de entrega combinado e suporte dedicado.</p>
+          </div>
+          <div class="b2b-step">
+            <div class="b2b-step-num">3</div>
+            <h3>Instalamos juntos</h3>
+            <p>Orientação completa para sua equipe. Suporte pós-instalação por 12 meses.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FAQ B2B -->
+    <section class="section-b2b-faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Dúvidas</span>
+          <h2>Perguntas do plano empresas</h2>
+        </div>
+        <div style="max-width:720px; margin:0 auto;">
+          <div class="accordion" role="list" aria-label="Perguntas frequentes para empresas">
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Tem desconto para volume?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Sim. Condições especiais para compras a partir de 5 unidades. Quanto maior o volume, melhor a condição. Fale com nosso time para receber uma proposta personalizada.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Vocês fazem a instalação?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Orientamos e damos suporte completo. A instalação é simples o suficiente para qualquer funcionário — levamos menos de 10 minutos por banheiro. Enviamos manual detalhado e fazemos call de onboarding com sua equipe.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Tem nota fiscal?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Sim. Emitimos nota fiscal eletrônica para pessoa jurídica em todas as compras institucionais. Dados fiscais completos para seu departamento financeiro.</p>
+              </div>
+            </div>
+            <div class="accordion-item" role="listitem">
+              <button class="accordion-trigger" aria-expanded="false" onclick="toggleAccordion(this)">
+                Qual o prazo de entrega para empresas?
+                <span class="accordion-icon" aria-hidden="true">+</span>
+              </button>
+              <div class="accordion-body" role="region">
+                <p>Combinamos conforme volume e localização. Pedidos pequenos (até 10 unidades) seguem o prazo padrão de 7 dias úteis. Para volumes maiores, planejamos a entrega juntos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CTA FINAL B2B -->
+    <section class="section-b2b-cta">
+      <div class="container" style="text-align:center;">
+        <span class="section-label" style="color:rgba(255,255,255,0.4);">Próximo passo</span>
+        <h2>Pronto para elevar o padrão?</h2>
+        <p>Fale com nosso time e receba uma proposta em até 2 horas.</p>
+        <div class="b2b-cta-box">
+          <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20saber%20sobre%20o%20plano%20para%20instituições%20da%20numero2" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg" aria-label="Entrar em contato pelo WhatsApp para plano institucional">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Falar com nosso time agora
+          </a>
+          <small>Respondemos em até 2 horas nos dias úteis</small>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /B2B -->
+
+  <!-- RODAPÉ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="logo">
+            <span class="blue">numero</span><span class="black">2</span>
+            <span class="logo-tagline">Higiene Moderna</span>
+          </div>
+        </div>
+        <nav class="footer-links" aria-label="Links do rodapé">
+          <a href="produto.html">Comprar</a>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="#">Política de Troca</a>
+          <a href="#">Privacidade</a>
+        </nav>
+        <p class="footer-copy">© 2024 numero2. Todos os direitos reservados.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/5500000000000?text=Olá%2C%20quero%20saber%20mais%20sobre%20o%20Jet%20Clean" target="_blank" rel="noopener" class="wa-float" aria-label="Falar pelo WhatsApp" title="Falar pelo WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    /* ==========================================
+       TAB SWITCHER
+       ========================================== */
+    function switchTab(tab) {
+      const tabs = ['b2c', 'b2b'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        const content = document.getElementById('content-' + t);
+        const isActive = t === tab;
+        btn.classList.toggle('active', isActive);
+        btn.setAttribute('aria-selected', isActive);
+        content.classList.toggle('active', isActive);
+      });
+      // Scroll to top of content
+      window.scrollTo({ top: 68, behavior: 'smooth' });
+    }
+
+    /* ==========================================
+       ACCORDION
+       ========================================== */
+    function toggleAccordion(trigger) {
+      const item = trigger.closest('.accordion-item');
+      const body = item.querySelector('.accordion-body');
+      const isOpen = item.classList.contains('open');
+
+      // Close all siblings in same accordion
+      const accordion = item.closest('.accordion');
+      accordion.querySelectorAll('.accordion-item.open').forEach(openItem => {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.accordion-body').classList.remove('open');
+          openItem.querySelector('.accordion-trigger').setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      item.classList.toggle('open', !isOpen);
+      body.classList.toggle('open', !isOpen);
+      trigger.setAttribute('aria-expanded', !isOpen);
+    }
+
+    /* ==========================================
+       SMOOTH SCROLL
+       ========================================== */
+    function smoothScroll(e, id) {
+      e.preventDefault();
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    }
+
+    /* ==========================================
+       NAVBAR SHADOW ON SCROLL
+       ========================================== */
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      if (current > 10) {
+        navbar.style.boxShadow = '0 2px 16px rgba(0,0,0,0.08)';
+      } else {
+        navbar.style.boxShadow = 'none';
+      }
+      lastScroll = current;
+    }, { passive: true });
+  </script>
+</body>
+</html>
